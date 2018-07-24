@@ -1,0 +1,114 @@
+{
+  "Version": 1,
+  "UUID": "7846a650-4510-11e8-b5ce-44fb42fffee0",
+  "Name": "FairBnB",
+  "Properties": {
+    "description": "Holochain app prototyping a new decentralized Craigslist",
+    "language": "en"
+  },
+  "PropertiesSchemaFile": "properties_schema.json",
+
+  "RequiresVersion": 26,
+  "DHTConfig": {
+    "HashType": "sha2-256",
+    "NeighborhoodSize": 0
+  },
+  "Zomes": [{
+    "Name": "posts",
+    "Description": "read and write posts",
+    "CodeFile": "posts.js",
+    "RibosomeType": "js",
+    "BridgeFuncs": null,
+    "Config": null,
+    "Entries": [{
+        "Name": "postData",
+        "DataFormat": "json",
+        "SchemaFile": "post_schema.json",
+        "Sharing": "public"
+      },
+      {
+        "Name": "cityLinks",
+        "DataFormat": "links",
+        "Sharing": "public"
+      },
+      {
+        "Name": "city",
+        "DataFormat": "string",
+        "Sharing": "public"
+      },
+      {
+        "Name": "category",
+        "DataFormat": "string",
+        "Sharing": "public"
+      },
+      {
+        "Name": "cityAndCat",
+        "DataFormat": "string",
+        "Sharing": "public"
+      }
+    ],
+    "Functions": [{
+        "Name": "readPost",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "editPost",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "removePost",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "deletePost",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "deleteLinks",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "writePost",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "readYourPosts",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "readPostsByCity",
+        "CallingType": "json",
+        "Exposure": "public"
+      },
+      {
+        "Name": "readPostsByCityAndCategory",
+        "CallingType": "json",
+        "Exposure": "public"
+      }
+    ]
+  }, {
+    "Name": "peerVis",
+    "Desription": "show whos online",
+    "CodeFile": "peerVis.js",
+    "RibosomeType": "js",
+    "Config": {
+      "ErrorHandling": "throwErrors"
+    },
+    "Entries": [{
+      "Name": "peerLink",
+      "DataFormat": "links"
+    }],
+    "Functions": [{
+      "Name": "getPeers",
+      "CallingType": "json",
+      "Exposure": "public"
+    }]
+  }]
+}
