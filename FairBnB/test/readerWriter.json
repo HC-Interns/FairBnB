@@ -1,0 +1,283 @@
+{
+  "Tests": [
+    {
+      "Convey": "write a post to New Craigslist",
+      "Zome": "posts",
+      "FnName": "writePost",
+      "Input": {
+        "title": "Great Bike",
+        "category": "ForSale",
+        "city": "Vancouver",
+        "details":
+          "Rode this bike for 10 years. Selling it because I'm moving.",
+        "email": "fakeperson@gmail.com",
+        "timestamp": 12345
+      },
+      "Output": "%h4%"
+    },
+    {
+      "Convey": "write a post to New Craigslist with a different city",
+      "Zome": "posts",
+      "FnName": "writePost",
+      "Input": {
+        "title": "Paint my fence?",
+        "category": "Jobs",
+        "city": "Kelowna",
+        "details":
+          "My fence is in need of a new coat of paint and primer. Will pay handsomely.",
+        "email": "earnest@gmail.com",
+        "timestamp": 12345
+      },
+      "Output": "%h4%"
+    },
+    {
+      "Convey":
+        "write a post to New Craigslist with existing city and different category",
+      "Zome": "posts",
+      "FnName": "writePost",
+      "Input": {
+        "title": "Paint my fence?",
+        "category": "Personals",
+        "city": "Kelowna",
+        "details": "And other outdoor sports",
+        "email": "ktown@gmail.com",
+        "timestamp": 12345
+      },
+      "Output": "%h3%"
+    },
+    {
+      "Convey": "get all links associated with current user",
+      "Zome": "posts",
+      "FnName": "readYourPosts",
+      "Input": "",
+      "Output": [
+        {
+          "title": "Paint my fence?",
+          "category": "Personals",
+          "city": "Kelowna",
+          "details": "And other outdoor sports",
+          "email": "ktown@gmail.com",
+          "timestamp": 12345
+        },
+
+        {
+          "title": "Paint my fence?",
+          "category": "Jobs",
+          "city": "Kelowna",
+          "details":
+            "My fence is in need of a new coat of paint and primer. Will pay handsomely.",
+          "email": "earnest@gmail.com",
+          "timestamp": 12345
+        },
+        {
+          "title": "Great Bike",
+          "category": "ForSale",
+          "city": "Vancouver",
+          "details":
+            "Rode this bike for 10 years. Selling it because I'm moving.",
+          "email": "fakeperson@gmail.com",
+          "timestamp": 12345
+        }
+      ]
+    },
+    {
+      "Convey": "get all links with the given city (Vancouver)",
+      "Zome": "posts",
+      "FnName": "readPostsByCity",
+      "Input": "Vancouver",
+      "Output": [
+        {
+          "title": "Great Bike",
+          "category": "ForSale",
+          "city": "Vancouver",
+          "details":
+            "Rode this bike for 10 years. Selling it because I'm moving.",
+          "email": "fakeperson@gmail.com",
+          "timestamp": 12345
+        }
+      ]
+    },
+    {
+      "Convey": "get all links with the given city (Kelowna)",
+      "Zome": "posts",
+      "FnName": "readPostsByCity",
+      "Input": "Kelowna",
+      "Output": [
+        {
+          "title": "Paint my fence?",
+          "category": "Personals",
+          "city": "Kelowna",
+          "details": "And other outdoor sports",
+          "email": "ktown@gmail.com",
+          "timestamp": 12345
+        },
+        {
+          "title": "Paint my fence?",
+          "category": "Jobs",
+          "city": "Kelowna",
+          "details":
+            "My fence is in need of a new coat of paint and primer. Will pay handsomely.",
+          "email": "earnest@gmail.com",
+          "timestamp": 12345
+        }
+      ]
+    },
+    {
+      "Convey":
+        "get all links with the given city (Kelowna) and Category (Jobs)",
+      "Zome": "posts",
+      "FnName": "readPostsByCityAndCategory",
+      "Input": { "city": "Kelowna", "category": "Jobs" },
+      "Output": [
+        {
+          "title": "Paint my fence?",
+          "category": "Jobs",
+          "city": "Kelowna",
+          "details":
+            "My fence is in need of a new coat of paint and primer. Will pay handsomely.",
+          "email": "earnest@gmail.com",
+          "timestamp": 12345
+        }
+      ]
+    },
+    {
+      "Convey": "read a post from New Craigslist",
+      "Zome": "posts",
+      "FnName": "readPost",
+      "Input": "%h3%",
+      "Output": {
+        "title": "Paint my fence?",
+        "category": "Personals",
+        "city": "Kelowna",
+        "details": "And other outdoor sports",
+        "email": "ktown@gmail.com",
+        "timestamp": 12345
+      }
+    },
+    {
+      "Convey": "delete links to a post",
+      "Zome": "posts",
+      "FnName": "deleteLinks",
+      "Input": "%h3%",
+      "Output": true
+    },
+    {
+      "Convey": "delete a post from New Craigslist",
+      "Zome": "posts",
+      "FnName": "deletePost",
+      "Input": "%h3%",
+      "Output": true
+    },
+    {
+      "Convey": "delete links to a post that has already been deleted",
+      "Zome": "posts",
+      "FnName": "deleteLinks",
+      "Input": "%h1%",
+      "Output": false
+    },
+    {
+      "Convey":
+        "delete a post that has already been removed from New Craigslist",
+      "Zome": "posts",
+      "FnName": "deletePost",
+      "Input": "%h1%",
+      "Output": false
+    },
+    {
+      "Convey": "add deleted post back to New Craigslist",
+      "Zome": "posts",
+      "FnName": "writePost",
+      "Input": {
+        "title": "Paint my fence?",
+        "category": "Personals",
+        "city": "Kelowna",
+        "details": "And other indoor sports",
+        "email": "ktown@gmail.com",
+        "timestamp": 123456
+      },
+      "Output": "%h2%"
+    },
+    {
+      "Convey": "remove post and links from New Craigslist",
+      "Zome": "posts",
+      "FnName": "removePost",
+      "Input": "%h2%",
+      "Output": true
+    },
+    {
+      "Convey": "get all links with the given city (Kelowna)",
+      "Zome": "posts",
+      "FnName": "readPostsByCity",
+      "Input": "Kelowna",
+      "Output": [
+        {
+          "title": "Paint my fence?",
+          "category": "Jobs",
+          "city": "Kelowna",
+          "details":
+            "My fence is in need of a new coat of paint and primer. Will pay handsomely.",
+          "email": "earnest@gmail.com",
+          "timestamp": 12345
+        }
+      ]
+    },
+    {
+      "Convey": "add to New Craigslist",
+      "Zome": "posts",
+      "FnName": "writePost",
+      "Input": {
+        "title": "Free Cat",
+        "category": "ForSale",
+        "city": "Vancouver",
+        "details": "A wonderful companion. Loves belly rubs!",
+        "email": "ktown@gmail.com",
+        "timestamp": 123456
+      },
+      "Output": "%h1%"
+    },
+    {
+      "Convey": "edit a post existing on New Craigslist",
+      "Zome": "posts",
+      "FnName": "editPost",
+      "Input": {
+        "post": {
+          "title": "Free Cat, Loves Kids",
+          "category": "ForSale",
+          "city": "Vancouver",
+          "details":
+            "A wonderful companion. Loves belly rubs! Serious offers only.",
+          "email": "ktown@gmail.com",
+          "timestamp": 123456
+        },
+        "oldHash": "%h1%"
+      },
+      "Output": "%h%"
+    },
+    {
+      "Convey": "get all links with the given city (Vancouver)",
+      "Zome": "posts",
+      "FnName": "readPostsByCity",
+      "Input": "Vancouver",
+      "Output": [
+        {
+          "title": "Free Cat, Loves Kids",
+          "category": "ForSale",
+          "city": "Vancouver",
+          "details":
+            "A wonderful companion. Loves belly rubs! Serious offers only.",
+          "email": "ktown@gmail.com",
+          "timestamp": 123456
+        },
+        {
+          "title": "Great Bike",
+          "category": "ForSale",
+          "city": "Vancouver",
+          "details":
+            "Rode this bike for 10 years. Selling it because I'm moving.",
+          "email": "fakeperson@gmail.com",
+          "timestamp": 12345
+        }
+      ]
+    }
+  ]
+}

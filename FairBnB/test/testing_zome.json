@@ -1,0 +1,44 @@
+{
+  "Tests": [{
+      "Convey": "write a post to New Craigslist",
+      "Zome": "posts",
+      "FnName": "writePost",
+      "Input": {
+        "title": "1BHK",
+        "category": "ForSale",
+        "city": "Denver",
+        "details": "Details about the house bla bla bla. . ",
+        "email": "Zo@El.com",
+        "timestamp": 12345
+      },
+      "Output": "%h4%"
+    },
+    {
+      "Convey": "get all links associated with current user",
+      "Zome": "posts",
+      "FnName": "readYourPosts",
+      "Input": "",
+      "Output": [{
+        "title": "1BHK",
+        "category": "ForSale",
+        "city": "Denver",
+        "details": "Details about the house bla bla bla. . ",
+        "email": "Zo@El.com",
+        "timestamp": 12345
+      }]
+    }, {
+      "Convey": "get all links with the given city (Vancouver)",
+      "Zome": "posts",
+      "FnName": "readPostsByCity",
+      "Input": "Denver",
+      "Output": [{
+        "title": "1BHK",
+        "category": "ForSale",
+        "city": "Denver",
+        "details": "Details about the house bla bla bla. . ",
+        "email": "Zo@El.com",
+        "timestamp": 12345
+      }]
+    }
+  ]
+}
