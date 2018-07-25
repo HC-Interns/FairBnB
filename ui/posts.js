@@ -33,37 +33,56 @@ function appendPost(category, date, title, location, details, isCategory) {
   var container = document.getElementById("post-container");
   var postDiv = document.createElement("div");
   postDiv.setAttribute("id", "post");
-  postDiv.setAttribute("class", "post");
+  postDiv.setAttribute("class", "card mb-3");
   container.appendChild(postDiv);
 
-  var postTitle = document.createElement("p");
-  postTitle.innerHTML = `<strong>${getMonthOfYear(
+
+  var postTitleName = document.createElement("h3");
+  postTitleName.innerHTML = "Title: " + `${title}`;
+  postTitleName.setAttribute("class", "card-header");
+  postDiv.appendChild(postTitleName)
+
+  var postTitle = document.createElement("h5");
+  postTitle.innerHTML = "Date: " + `<strong>${getMonthOfYear(
     new Date(date).getMonth()
   )} ${new Date(
     date
-  ).getDate()}</strong> <strong>[${category}]</strong> ${title} (${location}) `;
-  postTitle.setAttribute("class", "title");
-
-  var postText = document.createElement("p");
-  postText.innerHTML = `${details}`;
-  postText.setAttribute("class", "text-muted"); //"details");
+  ).getDate()} </strong>`;
+  postTitle.setAttribute("class", "card-title");
   postDiv.appendChild(postTitle);
+
+
+  var postCategory = document.createElement("h5");
+  postCategory.innerHTML = "Category: " + `<strong>${category}</strong>`;
+  postCategory.setAttribute("class", "card-title");
+  postDiv.appendChild(postCategory)
+
+
+  var postLocation = document.createElement("h5");
+  postLocation.innerHTML = "Location: " + `<strong>${location}</strong>`;
+  postLocation.setAttribute("class", "card-title");
+  postDiv.appendChild(postLocation)
+
+  var postText = document.createElement("h5");
+  postText.innerHTML = "Details: " + `<strong>${details}</strong>`;
+  postText.setAttribute("class", "card-title");
+  postDiv.appendChild(postText);
+
   if (!isCategory) {
     var deleteButton = document.createElement("button");
-    deleteButton.setAttribute("class", "btn btn-link");
+    deleteButton.setAttribute("class", "btn btn-danger");
     deleteButton.innerHTML = "Delete";
     var editButton = document.createElement("button");
-    editButton.setAttribute("class", "btn btn-link");
+    editButton.setAttribute("class", "btn btn-secondary");
     editButton.innerHTML = "Edit";
-    postDiv.appendChild(deleteButton);
     postDiv.appendChild(editButton);
+    postDiv.appendChild(deleteButton);
   }
 
-  postDiv.appendChild(postText);
 }
 // Helper function to get month name of the year
 //@param: target date
-const getMonthOfYear = function (month) {
+const getMonthOfYear = function(month) {
   switch (month) {
     case 0:
       return "January";
